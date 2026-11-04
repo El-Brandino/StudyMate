@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  height: 100vh;
+  color: #2B2B2B;
+  background-color: #FAF8F2;
+  padding: 0;
+  margin: 0;
+}
+
+body h1{
+    margin: 0;
+}
+
+aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 20%;
+    background-color: #214D3A;
+    height: 100vh;
+}
+
+aside header{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    margin-left: 30px;
+}
+
+aside header h1{
+    font-style: normal;
+    font-size: 20px;
+    color: #ffff;
+}
+
+aside header img{
+    width: 50px;
+}
+
+aside .aside-contain{
+    border-top:1px solid #CDD6CF;
+    border-bottom:1px solid #CDD6CF;
+    padding: 10px 15px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.aside-contain .aside-account{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    margin: 15px 10px;
+    background-color: #2b634c;
+    border-radius: 15px;
+    border: #CDD6Cf solid 1px;
+}
+
+.aside-contain .aside-account img{
+    border-radius: 100%;
+    border: solid #C8A45D;
+    width: 40px;
+    height: 40px;
+}
+
+.aside-contain .aside-account .account-tittle h1{
+    font-size: 15px;
+    color: #fff;
+}
+
+ul li{
+    text-decoration: none;
+    outline: none;
+    margin: 10px 0px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0px 15px;
+}
+
+li button, .log-out button{
+    width: 100%;
+    height: 5vh;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: none;
+    border: none;
+    color: #FAF8F2;
+    font-weight: 500;
+    font-size:15px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.button-list button:hover, .log-out button:hover{
+    background-color: #2b634c;
+    border-color: #FAF8F2;
+}
+
+.button-list button:hover img, .log-out button:hover img{
+    filter: brightness(0) saturate(100%) invert(72%) sepia(18%) saturate(750%) hue-rotate(4deg) brightness(88%) contrast(88%);
+}
+
+li button img{
+    width: 25px;
+}
+
+.log-out button{
+    width: 85%;
+    margin: 0px 25px;
+}

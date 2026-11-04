@@ -1,0 +1,38 @@
+# Environment dan credentials
+**/.env
+**/.env.*
+!**/.env.example
+
+# Dependencies
+**/node_modules/
+**/vendor/
+
+# Build
+**/dist/
+**/build/
+
+# Database lokal
+Back-End/database/*.sqlite*
+
+# File upload pengguna
+Back-End/storage/app/public/*
+!Back-End/storage/app/public/.gitignore
+
+Back-End/storage/app/private/*
+!Back-End/storage/app/private/.gitignore
+
+# Cache dan file sementara Laravel
+Back-End/bootstrap/cache/*
+!Back-End/bootstrap/cache/.gitignore
+
+Back-End/storage/framework/cache/*
+Back-End/storage/framework/sessions/*
+Back-End/storage/framework/views/*
+Back-End/storage/framework/testing/*
+Back-End/storage/logs/*
+
+# Cache testing
+Back-End/.phpunit.result.cache
+
+# Logs
+*.log

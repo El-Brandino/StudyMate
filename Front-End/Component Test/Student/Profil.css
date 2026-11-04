@@ -1,0 +1,247 @@
+.profil-container {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 80%;
+  height: calc(100vh - 80px);
+  padding: 30px;
+  background-color: #FAF8F2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profil-card {
+  background-color: #ffffff;
+  border: 3px dotted #E3E6E2;
+  border-radius: 10px;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Left Section - Profile Info */
+.profil-left {
+  flex: 0 0 auto;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.avatar-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #E8E8E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profil-name {
+  color: #2B2B2B;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+.profil-kelas {
+  color: #999999;
+  font-size: 14px;
+  margin: 5px 0 0 0;
+  text-align: center;
+}
+
+.ganti-foto-btn {
+  background-color: #214D3A;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.ganti-foto-btn:hover {
+  background-color: #1a3a2d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(33, 77, 58, 0.2);
+}
+
+.foto-info {
+  color: #999999;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.6;
+  margin: 10px 0 0 0;
+}
+
+/* Divider */
+.profil-divider {
+  width: 3px;
+  background-color: #E3E6E2;
+  border-radius: 2px;
+}
+
+/* Right Section - Data Profil */
+.profil-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.data-profil-title {
+  color: #2B2B2B;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #2B2B2B;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 2px solid #E3E6E2;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2B2B2B;
+  transition: all 0.3s ease;
+  background-color: #FAFAFA;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #214D3A;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(33, 77, 58, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #CCC;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.btn-simpan,
+.btn-ubah-password {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-simpan {
+  background-color: #214D3A;
+  color: #ffffff;
+}
+
+.btn-simpan:hover {
+  background-color: #1a3a2d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(33, 77, 58, 0.2);
+}
+
+.btn-ubah-password {
+  background-color: #ffffff;
+  color: #214D3A;
+  border: 2px solid #214D3A;
+}
+
+.btn-ubah-password:hover {
+  background-color: #ECF2EF;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profil-container {
+    padding: 20px;
+  }
+
+  .profil-card {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .profil-left {
+    width: 100%;
+    border-bottom: 2px solid #E3E6E2;
+    padding-bottom: 20px;
+  }
+
+  .profil-divider {
+    display: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar-circle {
+    width: 100px;
+    height: 100px;
+  }
+}

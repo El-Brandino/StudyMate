@@ -1,0 +1,162 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  height: 100vh;
+  color: #2B2B2B;
+  background-color: #FAF8F2;
+  padding: 0;
+  margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body h1,
+body h2,
+body h3,
+body p {
+    margin: 0;
+    padding: 0;
+}
+
+body a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-dashboard{
+    position: absolute;
+    top: 80px;
+    right: 0;
+    padding: 15px 25px;
+    padding-right: 35px;
+    width: 75%;
+    display: grid;
+    gap: 25px;
+}
+
+.main-dashboard img{
+    width: 20px;
+}
+
+.greeting-card, .card-info{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 30px;
+    border: #E3E6E2 solid 1px;
+}
+
+.greeting-card{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
+
+.greeting-card p{
+    color: #68756F;
+}
+
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    border: none;
+}
+
+.stats-card{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px;
+    border: #E3E6E2 solid 1px;
+    background-color:#FFFFFF;
+    border-radius: 15px;
+}
+
+.stats-card img{
+    width: 20px;
+    height: 20px;
+}
+
+.icon-box{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#clipboard, #clipboard img{
+    background-color: #EDF2F1;
+}
+#checked{
+    background-color: #FBF5E3;
+}
+#clock{
+    background-color: #FAEDED;
+}
+#book{
+    background-color: #ECF2EF;
+}
+
+.stats-card div{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.stats-card div strong{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.stats-card div small{
+    color: #68756F;
+}
+
+.progress-div{
+    display: grid;
+    gap: 15px;
+}
+
+.progress-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-header span{
+    color: #174838;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.progress-bar{
+    height: 10px;
+    background-color: #E3E6E2;
+    border-radius: 10px;
+}
+
+.dashboard-info{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card-info-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-info-header a{
+    color: #174838;
+    font-weight: bold;
+}
+
+.card-info-view{
+    min-height: 20vh;
+    background-color: #FAF8F2;
+    border: #E3E6E2 dotted 3px;
+    border-radius: 10px;
+}

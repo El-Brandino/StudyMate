@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - StudyMate</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <img src="/src/assets/logo/logo.svg" alt="Logo StudyMate">
+                </div>
+                <h1 class="app-name">StudyMate</h1>
+                <p class="app-tagline">Platform Manajemen Belajar Sekolah Telesandi</p>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="role-selector">
+                <div class="role-options">
+                    <button class="role-btn active" data-role="murid" onclick="selectRole('murid')">Murid</button>
+                    <button class="role-btn" data-role="guru" onclick="selectRole('guru')">Guru</button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()" id="toggleBtn">
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedRole = 'murid';
+
+        function selectRole(role) {
+            selectedRole = role;
+            
+            // Update active button
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-role="${role}"]`).classList.add('active');
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const toggleBtn = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.classList.add('show');
+                // Change to eye-slash icon
+                eyeIcon.innerHTML = '<line x1="17.94" y1="17.94" x2="2.58" y2="2.58"></line><path d="M9.9 4.24A9.72 9.72 0 0 1 22 12c0 5.85-4.5 10.74-10.7 10.74-2.16 0-4.2-.67-5.9-1.8"></path><path d="M6.5 6.5C4.5 8 3.56 10.3 3.56 12c0 4.97 4.49 9 10.22 9 1.69 0 3.3-.35 4.74-1"></path>';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.classList.remove('show');
+                // Change back to eye icon
+                eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            console.log('Login:', { username, password, role: selectedRole });
+            alert(`Login ${selectedRole} berhasil! Username: ${username}`);
+            
+            // Clear form
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  height: 100vh;
+  color: #2B2B2B;
+  background-color: #FAF8F2;
+  padding: 0;
+  margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body h1,
+body h2,
+body h3,
+body p {
+    margin: 0;
+    padding: 0;
+}
+
+body a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-ujian-box{
+    width: 80%;
+    padding: 25px;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.ujian-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    background-color: #fff;
+    width: 95%;
+    height: 45vh;
+    border-radius: 15px;
+    border: #E3E6E2 3px dotted;
+}
+
+.ujian-icon{
+    background-color: #E3E6E2;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.ujian-icon img{
+    width: 100px;
+}
+
+.ujian-title{
+    display: grid;
+    place-items: center;
+    gap: 10px;
+}
+
+.ujian-title strong{
+    color: #68756F;
+    font-weight: 550;
+}
+
+.ujian-title small{
+    color: #68756F;
+}

@@ -1,0 +1,479 @@
+:root {
+  --auth-bg: #FAF8F2;
+  --auth-surface: #FFFFFF;
+  --auth-surface-alt: #F4F6F2;
+  --auth-primary: #214D3A;
+  --auth-primary-hover: #173A2D;
+  --auth-primary-soft: #1f5b43;
+  --auth-text: #2B2B2B;
+  --auth-subtext: #68756F;
+  --auth-border: #E3E6E2;
+  --auth-input-bg: #FAFAFA;
+  --auth-button-text: #FFFFFF;
+  --auth-shadow: rgba(33, 77, 58, 0.15);
+}
+
+:root.dark-mode {
+  --auth-bg: #101815;
+  --auth-surface: #17211D;
+  --auth-surface-alt: #1D2A25;
+  --auth-primary: #73B69B;
+  --auth-primary-hover: #8BC9AD;
+  --auth-primary-soft: #1f5b43;
+  --auth-text: #F1F3EF;
+  --auth-subtext: #A7B2AC;
+  --auth-border: #2A3832;
+  --auth-input-bg: #1D2A25;
+  --auth-button-text: #0D1A15;
+  --auth-shadow: rgba(0, 0, 0, 0.28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: var(--auth-bg, #FAF8F2);
+  color: var(--auth-text, #2B2B2B);
+}
+
+/*---Login---*/
+.login-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--auth-bg, #FAF8F2);
+}
+
+.login-theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+.login-card {
+  background-color: var(--auth-surface, #FFFFFF);
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Logo Section */
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 20px;
+  background-color: #214d3a;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(33, 77, 58, 0.2);
+}
+
+.logo-icon img {
+  width: 68px;
+  height: 68px;
+}
+
+.app-name {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-main, #2B2B2B);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.app-tagline {
+  font-size: 14px;
+  color: var(--text-secondary, #7B8C7E);
+  font-weight: 500;
+}
+
+/* Role Selection */
+.role-selector {
+  margin-bottom: 35px;
+}
+
+.role-options {
+  display: flex;
+  gap: 10px;
+  background-color: var(--auth-surface-alt, #F5F5F5);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.role-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  background-color: transparent;
+  color: var(--auth-subtext, #68756F);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.role-btn.active {
+  background-color: var(--auth-primary, #214D3A);
+  color: var(--auth-button-text, #FFFFFF);
+  box-shadow: 0 2px 8px var(--auth-shadow, rgba(33, 77, 58, 0.15));
+}
+
+.role-btn:hover {
+  color: #2B2B2B;
+}
+
+.role-btn.active:hover {
+  color: #E8C766;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--auth-text, #2B2B2B);
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border: 2px solid var(--auth-border, #E3E6E2);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--auth-text, #2B2B2B);
+  transition: all 0.3s ease;
+  background-color: var(--auth-input-bg, #FAFAFA);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-soft, #214D3A);
+  background-color: var(--surface-card, #ffffff);
+  box-shadow: 0 0 0 3px rgba(33, 77, 58, 0.1);
+}
+
+:root:not(.dark-mode) .form-group input::placeholder {
+  color: rgba(43, 43, 43, 0.62);
+  opacity: 1;
+}
+
+.dark-mode .form-group input::placeholder {
+  color: rgba(241, 243, 239, 0.7);
+  opacity: 1;
+}
+
+/* Register - pilihan kelas (tingkat, jurusan, nomor kelas) */
+.register-class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.register-class-grid .form-group {
+  min-width: 0;
+}
+
+.register-class-preview {
+  color: var(--auth-subtext, #68756F);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.register-class-preview strong {
+  color: var(--auth-text, #2B2B2B);
+}
+
+/* Password Input Wrapper */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  flex: 1;
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary, #999999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 5px;
+}
+
+.toggle-password:hover,
+.toggle-password.show {
+  color: var(--primary-soft, #214D3A);
+}
+
+/* Login Button */
+.btn-login {
+  padding: 14px 20px;
+  background-color: var(--auth-primary, #214D3A);
+  color: var(--auth-button-text, #FFFFFF);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 8px 16px rgba(33, 77, 58, 0.18);
+}
+
+.btn-login:hover {
+  background-color: var(--auth-primary-hover, #1a3a2d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(33, 77, 58, 0.25);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+/* Login Footer */
+.login-footer {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-footer p {
+  font-size: 13px;
+  color: var(--text-secondary, #999999);
+}
+
+.login-footer a {
+  color: var(--primary-soft, #214D3A);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Dark login palette */
+.dark-mode .login-card {
+  border-color: #2a3c34;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.dark-mode .logo-icon {
+  background-color: #1f5b43;
+  box-shadow: 0 8px 18px rgba(31, 91, 67, 0.28);
+}
+
+.dark-mode .role-btn.active {
+  background-color: #1f5b43;
+  color: #f3f8f3;
+}
+
+.dark-mode .role-btn:hover {
+  color: #d3ad61;
+}
+
+.dark-mode .role-btn.active:hover {
+  color: #f2cf82;
+}
+
+.dark-mode .form-group input {
+  border-color: #2a3c34;
+}
+
+.dark-mode .form-group input:focus {
+  box-shadow: 0 0 0 3px rgba(115, 182, 155, 0.14);
+}
+
+.dark-mode .btn-login {
+  background-color: var(--auth-primary, #73B69B);
+  color: var(--auth-button-text, #0D1A15);
+}
+
+.dark-mode .btn-login:hover {
+  background-color: var(--auth-primary-hover, #8BC9AD);
+  box-shadow: 0 8px 18px rgba(115, 182, 155, 0.2);
+  color: var(--auth-button-text, #0D1A15);
+}
+
+.auth-switch {
+  margin-top: 22px;
+  color: var(--auth-subtext);
+  font-size: 14px;
+  text-align: center;
+}
+
+.auth-switch__link {
+  color: var(--auth-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.auth-switch__link:hover,
+.auth-switch__link:focus-visible {
+  color: var(--auth-primary-hover);
+  text-decoration-color: currentColor;
+}
+
+.auth-switch__link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--auth-primary);
+  outline-offset: 3px;
+}
+
+.dark-mode .auth-switch__link:hover,
+.dark-mode .auth-switch__link:focus-visible {
+  color: #e2bd68;
+}
+
+.login-footer a:hover {
+  color: #1a3a2d;
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login-card {
+    padding: 35px 25px;
+  }
+
+  .app-name {
+    font-size: 24px;
+  }
+
+  .app-tagline {
+    font-size: 13px;
+  }
+
+  .logo-section {
+    margin-bottom: 30px;
+  }
+
+  .register-class-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo-icon svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .form-group input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .btn-login {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}
+
+/*--- Pemilihan Kelas Bertingkat ---*/
+.class-select-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.class-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.class-select-field > label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.class-select-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .class-select-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .login-card {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .app-name {
+    font-size: 22px;
+  }
+
+  .role-options {
+    flex-direction: column;
+  }
+
+  .role-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}

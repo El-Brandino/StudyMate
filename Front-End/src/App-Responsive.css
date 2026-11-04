@@ -1,0 +1,1807 @@
+/* ==========================================================================
+   App-Responsive.css
+   Lapisan responsif terakhir untuk seluruh halaman StudyMate.
+   Dimuat setelah CSS role (siswa/guru/admin), Skeleton.css, dan
+   TugasKelompok.css supaya aturan di sini menang saat layar menyempit.
+
+   Breakpoint:
+   - 1200px : sidebar dipersempit, konten memakai sisa lebar.
+   - 1024px : sidebar menjadi navigasi bawah, semua halaman full width.
+   -  900px : dashboard dua kolom & profil ditumpuk.
+   -  768px : HP/tablet portrait, kartu, filter, kalender, modal.
+   -  700px : kartu info dashboard admin satu kolom.
+   -  600px : tab tugas kelompok 2 kolom, ringkasan 2 kolom.
+   -  540px : label navigasi bawah memakai teks pendek.
+   -  480px : HP kecil, teks & jarak dipadatkan.
+   -  380px : HP sangat kecil.
+   ========================================================================== */
+
+:root {
+  --sm-header-h: 80px;
+  --sm-page-x: 32px;
+  --sm-bottom-nav-h: 0px;
+  --sm-sidebar-w: 15%;
+}
+
+/* --------------------------------------------------------------------------
+   0) Pengaman umum
+   -------------------------------------------------------------------------- */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+/* Grid/flex item tanpa min-width sering memaksa halaman melebar. */
+.main-dashboard,
+.teacher-dashboard,
+.admin-page,
+.main-content {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+
+.dashboard-grid {
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+}
+
+.teacher-dashboard .stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.main-dashboard > *,
+.teacher-dashboard > *,
+.admin-page > *,
+.main-content > *,
+.dashboard-grid > *,
+.dashboard-info > *,
+.stats-grid > *,
+.admin-dashboard-info > *,
+.tk-summary-grid > *,
+.tk-two-col > *,
+.task-card > *,
+.student-task-card > * {
+  min-width: 0;
+}
+
+.progress-copy,
+.card-info-header,
+.greeting-card,
+.card-info,
+.greeting-card h2,
+.greeting-card p,
+.teacher-recent-task__content,
+.admin-account-item,
+.admin-agenda-item {
+  min-width: 0;
+}
+
+.admin-account-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Input file tersembunyi tidak boleh menambah lebar halaman/modal. */
+.task-upload-wrap .task-file-input,
+.task-upload-wrap .announcement-file-input {
+  width: 1px;
+  height: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   1) Layar 1200px ke bawah: sidebar lebih ramping, konten mengisi sisanya
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  :root {
+    --sm-sidebar-w: 210px;
+    --sm-page-x: 24px;
+  }
+
+  aside:not(.deadline-sidebar) {
+    width: var(--sm-sidebar-w);
+  }
+
+  .main-header {
+    left: var(--sm-sidebar-w);
+    width: auto;
+  }
+
+  .main-dashboard,
+  .main-pengumuman-box,
+  .main-tugas-box,
+  .main-ujian-box,
+  .kalender-container,
+  .profil-container,
+  .main-content,
+  .exam-page,
+  .admin-page,
+  .teacher-dashboard,
+  .teacher-tugas,
+  .teacher-pengumuman,
+  .teacher-ujian,
+  .box-title-global {
+    left: var(--sm-sidebar-w);
+    right: 0;
+    width: auto;
+  }
+
+  .tk-page {
+    width: auto;
+    margin-left: var(--sm-sidebar-w);
+  }
+
+  .main-dashboard,
+  .main-pengumuman-box,
+  .main-tugas-box,
+  .main-ujian-box,
+  .kalender-container,
+  .profil-container,
+  .main-content,
+  .exam-page,
+  .admin-page,
+  .teacher-dashboard,
+  .teacher-tugas,
+  .teacher-pengumuman,
+  .teacher-ujian,
+  .tk-page,
+  .box-title-global {
+    padding-left: var(--sm-page-x);
+    padding-right: var(--sm-page-x);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2) Layar 1024px ke bawah: navigasi bawah + halaman full width
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root {
+    --sm-header-h: 72px;
+    --sm-page-x: 20px;
+    --sm-bottom-nav-h: calc(66px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* --- Navigasi bawah --- */
+  aside:not(.deadline-sidebar) {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    height: auto;
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    z-index: 950;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  aside header,
+  aside .aside-contain .aside-account {
+    display: none;
+  }
+
+  aside .aside-contain {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: stretch;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  aside .aside-contain .button-list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  aside .button-list li {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+  }
+
+  aside .button-list a,
+  aside .log-out button {
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 54px;
+    margin: 0;
+    padding: 5px 2px;
+    border-radius: 10px;
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+    white-space: normal;
+  }
+
+  aside .button-list a img,
+  aside .log-out button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  aside .nav-label {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: inherit;
+    line-height: 1.08;
+  }
+
+  aside .log-out {
+    display: flex;
+    flex: 0 0 64px;
+    align-items: stretch;
+    margin: 0;
+  }
+
+  aside .log-out button {
+    margin: 0 0 0 4px;
+  }
+
+  /* --- Header --- */
+  .main-header {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    min-height: var(--sm-header-h);
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  .title-nav {
+    min-width: 0;
+  }
+
+  .title-nav h1 {
+    overflow: hidden;
+    font-size: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .title-nav p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav-contain {
+    flex: 0 0 auto;
+    gap: 8px;
+  }
+
+  .nav-buttons {
+    gap: 6px;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .account-button {
+    min-height: 40px;
+    padding: 3px 6px 3px 4px;
+    gap: 7px;
+  }
+
+  .account-button > img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-profile {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  /* --- Shell halaman --- */
+  .main-dashboard,
+  .main-pengumuman-box,
+  .main-tugas-box,
+  .main-ujian-box,
+  .kalender-container,
+  .profil-container,
+  .main-content,
+  .exam-page,
+  .admin-page,
+  .teacher-dashboard,
+  .teacher-tugas,
+  .teacher-pengumuman,
+  .teacher-ujian,
+  .box-title-global {
+    position: static;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    padding: calc(var(--sm-header-h) + 18px) var(--sm-page-x)
+      calc(var(--sm-bottom-nav-h) + 20px);
+    box-sizing: border-box;
+    align-items: stretch;
+    align-content: start;
+  }
+
+  .tk-page {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin-left: 0;
+    padding: calc(var(--sm-header-h) + 18px) var(--sm-page-x)
+      calc(var(--sm-bottom-nav-h) + 20px);
+    box-sizing: border-box;
+  }
+
+  .box-title-global {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .main-dashboard,
+  .admin-page,
+  .main-content {
+    gap: 18px;
+  }
+
+  .teacher-dashboard {
+    gap: 20px;
+  }
+
+  .tk-shell {
+    gap: 18px;
+  }
+
+  /* Profil memakai flex, bukan grid. */
+  .profil-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .profil-content {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+
+  /* Halaman kalender tidak lagi terkunci tinggi viewport. */
+  .kalender-container {
+    height: auto;
+  }
+
+  /* Panel yang lengket di desktop tidak boleh menutup header di tablet. */
+  .tk-aside-stack {
+    position: static;
+  }
+
+  /* Tabel tetap bisa digeser mendatar tanpa memaksa halaman melebar. */
+  .table-wrapper,
+  .admin-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3) Layar 900px ke bawah: dashboard & profil satu kolom
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .progress-panel {
+    grid-column: auto;
+  }
+
+  .main-dashboard .stats-grid,
+  .dashboard-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .teacher-dashboard .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tk-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .profil-card {
+    flex-direction: column;
+    gap: 24px;
+    padding: 26px;
+  }
+
+  .profil-left {
+    width: 100%;
+  }
+
+  .profil-divider {
+    display: none;
+  }
+
+  .form-row,
+  .admin-profile-page .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-page-actions .class-select-fields {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4) Layar 768px ke bawah: HP dan tablet portrait
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --sm-header-h: 68px;
+    --sm-page-x: 16px;
+    --sm-bottom-nav-h: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .main-header {
+    min-height: var(--sm-header-h);
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  .title-nav h1 {
+    font-size: 18px;
+  }
+
+  .title-nav p {
+    font-size: 10px;
+  }
+
+  .account-btn-info {
+    display: none;
+  }
+
+  .main-dashboard,
+  .admin-page,
+  .main-content {
+    gap: 16px;
+  }
+
+  .teacher-dashboard {
+    gap: 16px;
+  }
+
+  .greeting-card,
+  .card-info,
+  .stats-card,
+  .dashboard-panel {
+    padding: 18px;
+  }
+
+  .teacher-dashboard .stats-grid {
+    gap: 10px;
+  }
+
+  .teacher-dashboard .stats-card {
+    min-height: 82px;
+    padding: 18px;
+  }
+
+  .teacher-dashboard .greeting-card h2,
+  .main-dashboard .greeting-card h2 {
+    font-size: 21px;
+  }
+
+  /* --- Dashboard guru --- */
+  .progress-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .progress-filter {
+    flex-wrap: wrap;
+  }
+
+  .card-info-header {
+    flex-wrap: wrap;
+  }
+
+  .teacher-recent-task {
+    align-items: flex-start;
+  }
+
+  /* --- Filter tugas --- */
+  .task-filter-panel,
+  .announcement-filter-panel {
+    padding: 13px;
+  }
+
+  .task-search {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .task-filter-panel select,
+  .announcement-filter-panel select {
+    flex: 1 1 200px;
+    width: auto;
+    min-width: 0;
+  }
+
+  .student-sort-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .student-sort-bar select {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* --- Kartu tugas --- */
+  .task-card {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: flex-start;
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .task-card-meta {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+  }
+
+  .task-card-side {
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .task-card-actions {
+    flex-wrap: wrap;
+  }
+
+  .student-task-card {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .student-task-actions {
+    align-items: flex-start;
+  }
+
+  /* --- Ujian & pengumuman --- */
+  .exam-page-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .exam-filters,
+  .exam-filters--sorted,
+  .exam-filters--student {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 13px;
+  }
+
+  .exam-filters input {
+    grid-column: 1 / -1;
+  }
+
+  .exam-card {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .exam-card-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .exam-card-actions button {
+    flex: 1 1 auto;
+  }
+
+  .announcement-card {
+    padding: 18px;
+  }
+
+  .announcement-card__header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .announcement-card__header h2 {
+    font-size: 18px;
+  }
+
+  .announcement-card__controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .announcement-card__footer {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .announcement-content {
+    overflow-wrap: anywhere;
+  }
+
+  /* --- Kalender --- */
+  .kalender-container {
+    gap: 14px;
+  }
+
+  .kalender-header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .kalender-header h1 {
+    font-size: 20px;
+  }
+
+  .kalender-nav {
+    gap: 10px;
+  }
+
+  .month-year {
+    gap: 8px;
+  }
+
+  .month-year h2 {
+    min-width: 0;
+    font-size: 17px;
+  }
+
+  .kalender-content {
+    flex-direction: column;
+    gap: 14px;
+    overflow: visible;
+  }
+
+  .kalender-main {
+    max-height: none;
+    gap: 14px;
+    padding: 14px;
+    overflow: visible;
+  }
+
+  .calendar-grid-container {
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .day-headers,
+  .calendar-grid {
+    gap: 5px;
+  }
+
+  .day-header {
+    padding: 6px 0;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .calendar-day {
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .deadline-sidebar {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* --- Tugas kelompok --- */
+  .tk-page-head {
+    gap: 14px;
+  }
+
+  .tk-page-actions {
+    width: 100%;
+  }
+
+  .tk-page-actions .tk-btn {
+    flex: 1 1 auto;
+  }
+
+  .tk-meta-grid,
+  .tk-form-grid,
+  .tk-form-grid--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tk-group-head {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tk-group-progress {
+    min-width: 100%;
+  }
+
+  .tk-work-meta,
+  .tk-work-actions {
+    flex-wrap: wrap;
+  }
+
+  .tk-member-row {
+    align-items: flex-start;
+  }
+
+  .tk-detail-banner {
+    padding: 18px;
+  }
+
+  .tk-panel {
+    padding: 16px;
+  }
+
+  /* --- Profil --- */
+  .profil-container {
+    align-items: stretch;
+  }
+
+  .profil-card {
+    padding: 22px 18px;
+  }
+
+  .avatar-circle {
+    width: 110px;
+    height: 110px;
+  }
+
+  .profil-right {
+    gap: 18px;
+  }
+
+  /* --- Admin --- */
+  .admin-page-header {
+    align-items: flex-start;
+  }
+
+  .admin-page-header h2 {
+    font-size: 22px;
+  }
+
+  .admin-page-actions {
+    width: 100%;
+  }
+
+  .admin-page-actions .admin-btn,
+  .admin-page-actions .admin-select {
+    flex: 1 1 auto;
+  }
+
+  .admin-page-actions .class-select-fields {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .admin-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .admin-toolbar,
+  .admin-search,
+  .admin-search input {
+    width: 100%;
+  }
+
+  /* --- Modal --- */
+  .task-modal-overlay,
+  .exam-modal-overlay,
+  .announcement-modal-overlay,
+  .announcement-detail-overlay,
+  .exam-detail-overlay {
+    align-items: flex-start;
+    padding: 14px;
+    overflow-y: auto;
+  }
+
+  .task-modal,
+  .announcement-modal,
+  .exam-modal,
+  .exam-detail-modal,
+  .announcement-detail-modal {
+    width: 100%;
+    max-width: 720px;
+    max-height: calc(100vh - 28px);
+    max-height: calc(100dvh - 28px);
+    padding: 18px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-radius: 16px;
+  }
+
+  .announcement-modal-header {
+    gap: 12px;
+  }
+
+  .task-modal-header {
+    justify-content: space-between;
+  }
+
+  .task-form-row,
+  .task-form-row--two,
+  .task-form-row--three,
+  .announcement-form-row,
+  .announcement-form-row--two,
+  .announcement-form-row--three,
+  .exam-form-row,
+  .exam-form-row--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* --- Tabel --- */
+  .admin-data-table {
+    min-width: 560px;
+  }
+
+  .admin-table {
+    min-width: 600px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 10px 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5) Layar 600px ke bawah
+   -------------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .admin-dashboard-info {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Grid khusus filter kelas juga harus menumpuk di layar kecil. */
+  .admin-page-actions .admin-class-filter,
+  .tk-toolbar .tk-class-filter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --sm-page-x: 14px;
+  }
+
+  .dashboard-info {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Toolbar/filter tugas kelompok ditumpuk supaya judul tidak terjepit. */
+  .tk-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tk-toolbar > .tk-section-head {
+    flex: 1 1 100% !important;
+    width: 100%;
+  }
+
+  .tk-toolbar .tk-search,
+  .tk-toolbar select,
+  .tk-toolbar .tk-toolbar-note {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Filter kelas berupa grid, jangan ikut memanjang setinggi toolbar. */
+  .tk-toolbar .tk-class-filter {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Tabel jadwal lama: semua kolom muat tanpa geser mendatar. */
+  .main-content .admin-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .main-content .admin-table th,
+  .main-content .admin-table td {
+    padding: 8px 6px;
+    font-size: 11.5px;
+    line-height: 1.35;
+    vertical-align: top;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .main-content .admin-table th:first-child,
+  .main-content .admin-table td:first-child {
+    width: 76px;
+  }
+
+  .main-content .admin-table th:last-child,
+  .main-content .admin-table td:last-child {
+    width: 68px;
+  }
+
+  .main-content .table-wrapper {
+    overflow-x: visible;
+  }
+
+  /* Tab detail tugas kelompok menjadi 2 x 2 supaya semua terlihat. */
+  .tk-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    overflow: visible;
+  }
+
+  .tk-tab {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tk-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tk-summary-card {
+    padding: 12px;
+  }
+
+  /* Filter progres guru menjadi satu kolom. */
+  .progress-filter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .dropdown-class,
+  .dropdown-mayor,
+  .dropdown-numberClass {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dropdown-class select,
+  .dropdown-mayor select,
+  .dropdown-numberClass select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .progress-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .progress-copy {
+    width: 100%;
+  }
+
+  /* Kartu statistik guru ditumpuk agar teks tidak terpotong. */
+  .teacher-dashboard .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .teacher-dashboard .stats-card {
+    min-height: 0;
+  }
+
+  .pinned-exams {
+    padding: 16px;
+  }
+
+  .pinned-exams__header {
+    align-items: flex-start;
+  }
+
+  /* Modal tugas kelompok jadi bottom sheet. */
+  .tk-modal-overlay {
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .tk-modal,
+  .tk-modal--wide {
+    width: 100%;
+    max-height: 88vh;
+    max-height: 88dvh;
+    border-radius: 16px 16px 12px 12px;
+  }
+
+  .tk-modal-head,
+  .tk-modal-body {
+    padding: 16px;
+  }
+
+  .tk-page-head h1,
+  .tk-page-head h2 {
+    font-size: 1.45rem;
+  }
+
+  .tk-page-head p {
+    font-size: 13px;
+  }
+
+  /* Form profil dan password. */
+  .profil-password-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .profil-password-field {
+    width: 100%;
+  }
+
+  .profil-password-row .btn-simpan {
+    width: 100%;
+  }
+
+  /* Admin: item jadwal lebih ringkas. */
+  .admin-schedule-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 14px;
+  }
+
+  .admin-schedule-time {
+    grid-column: 1 / -1;
+  }
+
+  .admin-schedule-meta {
+    display: none;
+  }
+
+  .admin-greeting {
+    align-items: flex-start;
+  }
+
+  .admin-greeting h2 {
+    font-size: 22px;
+  }
+
+  .admin-greeting-actions {
+    width: 100%;
+  }
+
+  .admin-greeting-actions .admin-btn {
+    flex: 1;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-modal {
+    padding: 20px 16px;
+  }
+
+  .admin-modal-actions .admin-btn {
+    flex: 1;
+  }
+
+  /* Login/register. */
+  .login-wrapper {
+    align-items: flex-start;
+    padding: 18px 12px;
+  }
+
+  .login-card {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .app-name {
+    font-size: 24px;
+  }
+
+  .app-tagline {
+    font-size: 13px;
+  }
+
+  .logo-section {
+    margin-bottom: 26px;
+  }
+
+  .logo-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo-icon svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .register-class-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5b) Layar 540px ke bawah: label navigasi memakai teks pendek
+   -------------------------------------------------------------------------- */
+@media (max-width: 540px) {
+  aside .nav-label {
+    display: none;
+  }
+
+  aside .button-list a::after,
+  aside .log-out button::after {
+    content: attr(data-short);
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 9.5px;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6) Layar 480px ke bawah: HP kecil
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  :root {
+    --sm-header-h: 64px;
+    --sm-page-x: 12px;
+    --sm-bottom-nav-h: calc(62px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .main-header {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .title-nav h1 {
+    font-size: 16px;
+  }
+
+  .title-nav p {
+    font-size: 9px;
+  }
+
+  .nav-contain {
+    gap: 5px;
+  }
+
+  .nav-buttons {
+    gap: 4px;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon-button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .account-button {
+    min-height: 36px;
+    padding: 2px 4px;
+  }
+
+  .account-button > img,
+  .nav-profile {
+    flex-basis: 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  aside .button-list a,
+  aside .log-out button {
+    min-height: 50px;
+    padding: 4px 1px;
+    font-size: 8.5px;
+  }
+
+  aside .nav-label {
+    display: none;
+  }
+
+  aside .button-list a::after,
+  aside .log-out button::after {
+    content: attr(data-short);
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 8.5px;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  aside .button-list a img,
+  aside .log-out button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  aside .log-out {
+    flex-basis: 48px;
+  }
+
+  /* Dashboard. */
+  .main-dashboard .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .greeting-card,
+  .card-info,
+  .stats-card,
+  .dashboard-panel {
+    padding: 16px;
+  }
+
+  .teacher-dashboard .stats-card {
+    padding: 16px;
+  }
+
+  .main-dashboard .greeting-card h2,
+  .teacher-dashboard .greeting-card h2 {
+    font-size: 19px;
+  }
+
+  .progress-ring {
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
+    border-width: 8px;
+  }
+
+  .progress-ring strong {
+    font-size: 21px;
+  }
+
+  /* Filter ujian satu kolom di HP. */
+  .exam-filters,
+  .exam-filters--sorted,
+  .exam-filters--student {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .exam-filters input {
+    grid-column: auto;
+  }
+
+  /* Kartu tugas & ujian. */
+  .task-card,
+  .student-task-card,
+  .exam-card,
+  .announcement-card {
+    padding: 15px;
+  }
+
+  .task-card-actions {
+    width: 100%;
+  }
+
+  .task-card-action {
+    flex: 1 1 auto;
+    padding: 9px 10px;
+    text-align: center;
+  }
+
+  .task-card-meta-item {
+    min-width: 90px;
+  }
+
+  .exam-card-actions button {
+    flex: 1 1 100%;
+  }
+
+  .announcement-card__controls {
+    justify-content: flex-start;
+  }
+
+  /* Kalender. */
+  .kalender-header {
+    padding: 12px;
+  }
+
+  .kalender-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .month-year h2 {
+    font-size: 15px;
+  }
+
+  .calendar-day {
+    font-size: 12px;
+  }
+
+  .day-header {
+    font-size: 9px;
+  }
+
+  /* Profil. */
+  .profil-card {
+    padding: 18px 14px;
+  }
+
+  .avatar-circle {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profil-name {
+    font-size: 16px;
+  }
+
+  .profil-right {
+    gap: 16px;
+  }
+
+  .data-profil-title {
+    font-size: 18px;
+  }
+
+  /* Tugas kelompok. */
+  .tk-page-head h1,
+  .tk-page-head h2 {
+    font-size: 1.3rem;
+  }
+
+  .tk-page-actions .tk-btn {
+    flex: 1 1 100%;
+  }
+
+  .tk-detail-banner {
+    padding: 15px;
+  }
+
+  .tk-group,
+  .tk-work,
+  .tk-panel {
+    padding: 14px;
+  }
+
+  .tk-summary-grid {
+    gap: 8px;
+  }
+
+  .tk-summary-card strong {
+    font-size: 1.3rem;
+  }
+
+  .tk-check-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tk-check span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .tk-tab {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
+
+  /* Modal. */
+  .task-modal-overlay,
+  .exam-modal-overlay,
+  .announcement-modal-overlay,
+  .announcement-detail-overlay,
+  .exam-detail-overlay {
+    padding: 10px;
+  }
+
+  .task-modal,
+  .announcement-modal,
+  .exam-modal,
+  .exam-detail-modal,
+  .announcement-detail-modal {
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  .task-modal-header h2,
+  .announcement-form-title,
+  .exam-modal-title {
+    font-size: 17px;
+  }
+
+  .admin-modal-overlay {
+    padding: 10px;
+  }
+
+  .admin-modal {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  /* Login/register. */
+  .login-wrapper {
+    padding: 12px 8px;
+  }
+
+  .login-card {
+    padding: 26px 16px;
+  }
+
+  .role-options {
+    flex-direction: column;
+  }
+
+  .role-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7) Layar 380px ke bawah: HP sangat kecil
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  :root {
+    --sm-page-x: 10px;
+  }
+
+  aside .button-list a,
+  aside .log-out button {
+    font-size: 7.5px;
+  }
+
+  aside .log-out {
+    flex-basis: 44px;
+  }
+
+  .title-nav h1 {
+    font-size: 15px;
+  }
+
+  .title-nav p {
+    display: none;
+  }
+
+  aside .button-list a::after,
+  aside .log-out button::after {
+    font-size: 7.5px;
+  }
+
+  .tk-tab {
+    font-size: 11px;
+    padding: 7px 6px;
+  }
+
+  .tk-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profil-password-row .btn-simpan {
+    font-size: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8) Layar HP (<= 768px): sidebar menjadi drawer hamburger
+   --------------------------------------------------------------------------
+   Di atas 768px sidebar tetap seperti biasa, sedangkan tablet (769-1024px)
+   masih memakai navigasi bawah. Di HP sidebar disembunyikan dan dibuka lewat
+   tombol hamburger pada header.
+   -------------------------------------------------------------------------- */
+
+/* Kontrol khusus HP tidak ditampilkan di layar besar. */
+.mobile-menu-button,
+.aside-close,
+.aside-backdrop {
+  display: none;
+}
+
+.mobile-menu-button {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.mobile-menu-button:focus-visible {
+  outline: 2px solid #214d3a;
+  outline-offset: 2px;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 18px;
+  height: 14px;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #214d3a;
+  transition: background-color 160ms ease;
+}
+
+.dark-mode .hamburger-icon span {
+  background-color: var(--text-main, #f1f3ef);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sm-bottom-nav-h: 0px;
+  }
+
+  /* --- Tombol hamburger pada header --- */
+  .mobile-menu-button {
+    display: grid;
+    flex: 0 0 auto;
+  }
+
+  .title-nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title-nav h1 {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* --- Overlay gelap di belakang drawer --- */
+  .aside-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(8, 20, 15, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition: opacity 240ms ease, visibility 240ms ease;
+  }
+
+  .aside-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* --- Panel drawer --- */
+  aside:not(.deadline-sidebar) {
+    position: fixed;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(82vw, 300px);
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    padding: 0;
+    overflow: hidden;
+    z-index: 1200;
+    visibility: hidden;
+    transform: translateX(-100%);
+    box-shadow: 8px 0 28px rgba(0, 0, 0, 0.28);
+    transition: transform 260ms ease, visibility 260ms ease;
+  }
+
+  aside:not(.deadline-sidebar).is-open {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  aside:not(.deadline-sidebar) header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 14px 14px 10px;
+  }
+
+  aside:not(.deadline-sidebar) header img {
+    width: 40px;
+  }
+
+  aside:not(.deadline-sidebar) header h1 {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 19px;
+  }
+
+  .aside-close {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid rgba(227, 230, 226, 0.45);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #faf8f2;
+    font: inherit;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .aside-close:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  aside:not(.deadline-sidebar) .aside-contain {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-top: 1px solid rgba(227, 230, 226, 0.18);
+    border-bottom: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  aside:not(.deadline-sidebar) .aside-account {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+    height: 58px;
+    margin: 12px 14px 10px;
+    padding: 8px 10px;
+  }
+
+  aside:not(.deadline-sidebar) .button-list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    width: 100%;
+    margin: 0;
+    padding: 0 8px 10px;
+    overflow: visible;
+  }
+
+  aside:not(.deadline-sidebar) .button-list li {
+    flex: 0 0 auto;
+    margin: 0;
+  }
+
+  aside:not(.deadline-sidebar) .button-list a,
+  aside:not(.deadline-sidebar) .log-out button {
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    width: 100%;
+    height: auto;
+    min-height: 46px;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: left;
+    white-space: normal;
+  }
+
+  aside:not(.deadline-sidebar) .button-list a img,
+  aside:not(.deadline-sidebar) .log-out button img {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+  }
+
+  aside:not(.deadline-sidebar) .nav-label {
+    display: inline;
+    max-width: none;
+    overflow: visible;
+    font-size: 14px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  /* Label pendek navigation bar bawah tidak dipakai di drawer. */
+  aside:not(.deadline-sidebar) .button-list a::after,
+  aside:not(.deadline-sidebar) .log-out button::after {
+    content: none;
+    display: none;
+  }
+
+  aside:not(.deadline-sidebar) .log-out {
+    display: flex;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 10px 8px calc(12px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid rgba(227, 230, 226, 0.18);
+  }
+
+  aside:not(.deadline-sidebar) .log-out button {
+    margin: 0;
+  }
+}

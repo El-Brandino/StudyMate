@@ -1,0 +1,308 @@
+:root {
+  --skeleton-base: #e7ebe5;
+  --skeleton-highlight: #f6f8f4;
+}
+
+:root.dark-mode {
+  --skeleton-base: #202e28;
+  --skeleton-highlight: #2c3d35;
+}
+
+.skeleton {
+  display: block;
+  flex: 0 0 auto;
+  min-width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base) 25%,
+    var(--skeleton-highlight) 37%,
+    var(--skeleton-base) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.45s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+.skeleton--circle {
+  border-radius: 50% !important;
+}
+
+.skeleton-text {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.skeleton-stack {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.skeleton-inline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.skeleton-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.skeleton-greeting-copy {
+  display: grid;
+  flex: 1;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.admin-greeting.skeleton-greeting {
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.skeleton-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.skeleton-progress-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.skeleton-progress-copy {
+  flex: 1;
+}
+
+.skeleton-list {
+  display: grid;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border, #e3e6e2);
+}
+
+.skeleton-list-item:last-child {
+  padding-bottom: 4px;
+  border-bottom: 0;
+}
+
+.skeleton-list-copy {
+  flex: 1;
+}
+
+.skeleton-filter-panel {
+  pointer-events: none;
+}
+
+.skeleton-sort-bar {
+  pointer-events: none;
+}
+
+.skeleton-heading {
+  margin-bottom: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   Tabel admin
+   -------------------------------------------------------------------------- */
+
+.admin-table-wrap .skeleton-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.admin-table-wrap .skeleton-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.admin-data-table th .skeleton,
+.admin-data-table td .skeleton {
+  display: block;
+}
+
+.skeleton-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Kartu tugas
+   -------------------------------------------------------------------------- */
+
+.skeleton-task-card {
+  pointer-events: none;
+}
+
+.task-card-main .skeleton,
+.student-task-main .skeleton {
+  margin-bottom: 2px;
+}
+
+.skeleton-task-card .skeleton-stack {
+  align-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Ujian & pengumuman
+   -------------------------------------------------------------------------- */
+
+.skeleton-exam-card {
+  pointer-events: none;
+}
+
+.skeleton-exam-heading {
+  flex: 1;
+}
+
+.exam-card-info .skeleton {
+  align-self: center;
+}
+
+.skeleton-announcement-card {
+  pointer-events: none;
+}
+
+.skeleton-announcement-heading {
+  flex: 1;
+}
+
+.skeleton-announcement-body {
+  margin-top: 18px;
+}
+
+.skeleton-announcement-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border, #e3e6e2);
+}
+
+/* --------------------------------------------------------------------------
+   Jadwal admin
+   -------------------------------------------------------------------------- */
+
+.skeleton-schedule-row {
+  pointer-events: none;
+}
+
+.admin-schedule-item .skeleton {
+  align-self: center;
+}
+
+/* --------------------------------------------------------------------------
+   Profil
+   -------------------------------------------------------------------------- */
+
+.profil-card .skeleton {
+  max-width: 100%;
+}
+
+.profil-right > .skeleton {
+  align-self: flex-start;
+}
+
+.profil-password-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.teacher-subjects-section.skeleton-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skeleton-form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .admin-greeting.skeleton-greeting {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .skeleton-progress-content {
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .skeleton-progress-content {
+    flex-direction: column;
+  }
+
+  .skeleton-progress-copy {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .skeleton-announcement-card .announcement-card__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .skeleton-task-card .task-card-side,
+  .student-task-card .student-task-actions {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
