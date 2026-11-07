@@ -66,7 +66,7 @@ export default function Login({
             </div>
             <h1 className="app-name">StudyMate</h1>
             <p className="app-tagline">
-              Platform Manajemen Belajar Sekolah Telesandi
+              Platform Manajemen Belajar Sekolah
             </p>
           </div>
 

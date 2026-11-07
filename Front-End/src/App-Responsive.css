@@ -550,6 +550,10 @@ button {
     flex-wrap: wrap;
   }
 
+  .progress-panel .progress-content {
+    margin-top: 22px;
+  }
+
   .card-info-header {
     flex-wrap: wrap;
   }
@@ -1803,5 +1807,623 @@ button {
 
   aside:not(.deadline-sidebar) .log-out button {
     margin: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9) Optimasi kerapatan layout HP (<= 600px)
+   Hanya mengatur susunan, dimensi, padding, margin, dan gap.
+   Tidak mengubah warna, font, teks, maupun alur interaksi.
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  /* --- Ritme halaman --- */
+  .main-dashboard,
+  .main-pengumuman-box,
+  .main-tugas-box,
+  .main-ujian-box,
+  .kalender-container,
+  .profil-container,
+  .main-content,
+  .exam-page,
+  .admin-page,
+  .teacher-dashboard,
+  .teacher-tugas,
+  .teacher-pengumuman,
+  .teacher-ujian,
+  .box-title-global,
+  .tk-page {
+    padding-top: calc(var(--sm-header-h) + 12px);
+    padding-bottom: calc(var(--sm-bottom-nav-h) + 14px);
+  }
+
+  .main-dashboard,
+  .admin-page,
+  .main-content,
+  .teacher-dashboard,
+  .teacher-tugas,
+  .teacher-pengumuman,
+  .teacher-ujian,
+  .exam-page {
+    gap: 12px;
+  }
+
+  .tk-shell {
+    gap: 14px;
+  }
+
+  .profil-content {
+    gap: 12px;
+  }
+
+  .greeting-card,
+  .card-info,
+  .stats-card,
+  .dashboard-panel,
+  .teacher-dashboard .greeting-card,
+  .teacher-dashboard .stats-card {
+    padding: 14px;
+  }
+
+  .teacher-dashboard .greeting-card {
+    min-height: 0;
+  }
+
+  .dashboard-panel {
+    min-height: 0;
+  }
+
+  .card-info-view {
+    min-height: 96px;
+  }
+
+  .card-info-view--empty {
+    padding: 12px;
+  }
+
+  .stats-card {
+    gap: 10px;
+  }
+
+  .stats-card .icon-box {
+    padding: 8px;
+  }
+
+  .pinned-exams {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .dashboard-info {
+    gap: 12px;
+  }
+
+  .student-dashboard-list {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .student-task-page .student-task-heading {
+    margin-bottom: 12px;
+  }
+
+  .student-sort-bar {
+    margin-bottom: 12px;
+  }
+
+  .task-empty-state,
+  .exam-empty-state,
+  .announcement-empty-state,
+  .exam-page .exam-empty-state {
+    min-height: 110px;
+    padding: 16px;
+  }
+
+  .student-task-page .student-task-empty {
+    height: auto;
+    min-height: 160px;
+  }
+
+  /* --- Statistik dashboard --- */
+  .main-dashboard .stats-grid,
+  .admin-page .stats-grid,
+  .teacher-dashboard .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teacher-dashboard .stats-grid > .stats-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* --- Progress guru --- */
+  .progress-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .progress-filter > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .progress-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .progress-copy {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+
+  /* --- Filter tugas & pengumuman --- */
+  .task-filter-panel,
+  .announcement-filter-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .task-search {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .task-filter-panel select,
+  .announcement-filter-panel select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .task-filter-panel select:last-child,
+  .announcement-filter-panel select:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* --- Sort bar tugas siswa --- */
+  .student-sort-bar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 10px;
+  }
+
+  .student-sort-bar select {
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+  }
+
+  /* --- Filter ujian & kelas --- */
+  .exam-page-header {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .exam-page-header .exam-submit-button {
+    width: auto;
+    flex: 0 0 auto;
+    padding-inline: 12px;
+  }
+
+  .exam-filters,
+  .exam-filters--sorted,
+  .exam-filters--student {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .exam-filters input {
+    grid-column: 1 / -1;
+  }
+
+  .exam-filters .exam-class-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .exam-filters .exam-class-filter .class-select-field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* --- Card daftar --- */
+  .task-list,
+  .exam-list,
+  .announcement-list {
+    gap: 10px;
+  }
+
+  .student-task-page .student-task-list {
+    gap: 10px;
+  }
+
+  .task-card,
+  .student-task-card,
+  .exam-card,
+  .announcement-card,
+  .student-task-page .student-task-card,
+  .exam-page .exam-card {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .student-task-page .student-task-card {
+    min-height: 0;
+  }
+
+  .task-card-meta {
+    gap: 10px 16px;
+  }
+
+  .task-card-side {
+    gap: 8px;
+  }
+
+  .task-card-actions {
+    gap: 8px;
+  }
+
+  .student-task-page .student-task-meta {
+    margin-top: 10px;
+    gap: 6px 10px;
+  }
+
+  .student-task-page .student-task-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .exam-card-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .exam-card-header > div {
+    min-width: 0;
+  }
+
+  .exam-card-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+  }
+
+  .exam-card-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .exam-card-actions button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .announcement-card__header {
+    gap: 8px;
+  }
+
+  .announcement-card__controls {
+    gap: 8px;
+  }
+
+  .announcement-content {
+    margin-top: 14px !important;
+  }
+
+  .announcement-card__attachment {
+    margin-top: 12px !important;
+  }
+
+  .announcement-card__footer {
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+
+  /* --- Profil --- */
+  .profil-card {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .avatar-circle {
+    width: 84px;
+    height: 84px;
+  }
+
+  .avatar-section {
+    gap: 10px;
+  }
+
+  .ganti-foto-btn {
+    margin-top: 4px;
+    padding: 8px 18px;
+  }
+
+  .foto-info {
+    margin-top: 4px;
+  }
+
+  .profil-right {
+    gap: 14px;
+  }
+
+  .profil-right .form-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .profil-password-row {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .profil-password-field {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .profil-password-row .btn-ubah-password {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding-inline: 12px;
+  }
+
+  .profil-password-row .btn-simpan {
+    width: auto;
+  }
+
+  /* --- Kalender --- */
+  .kalender-container {
+    gap: 10px;
+  }
+
+  .kalender-content {
+    gap: 10px;
+  }
+
+  .kalender-main {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .kalender-header {
+    padding: 12px;
+  }
+
+  .calendar-grid-container {
+    gap: 8px;
+  }
+
+  .day-headers,
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  /* --- Tugas kelompok --- */
+  .tk-meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tk-invitation-panel {
+    padding: 14px;
+  }
+
+  .tk-card,
+  .tk-group,
+  .tk-panel {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .tk-invitation-list,
+  .tk-card-list,
+  .tk-group-list,
+  .tk-work-list,
+  .tk-activity-list,
+  .tk-feedback-list {
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .tk-toolbar {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tk-toolbar .tk-class-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tk-toolbar .tk-class-filter .class-select-field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .tk-page-actions .tk-btn {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding-inline: 10px;
+  }
+
+  .tk-detail-banner {
+    gap: 12px;
+  }
+
+  /* --- Admin --- */
+  .admin-card {
+    padding: 14px;
+  }
+
+  .admin-page-header {
+    gap: 10px;
+  }
+
+  .admin-page-subtitle {
+    margin-top: 4px;
+  }
+
+  .admin-page-actions {
+    gap: 8px;
+  }
+
+  .admin-toolbar {
+    gap: 8px;
+  }
+
+  .admin-page-actions .admin-class-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .admin-page-actions .admin-class-filter .class-select-field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .admin-schedule-card {
+    gap: 10px;
+  }
+
+  .admin-schedule-list {
+    gap: 8px;
+  }
+
+  .admin-schedule-item {
+    gap: 8px 10px;
+    padding: 12px;
+  }
+
+  /* --- Login/register --- */
+  .login-wrapper {
+    padding: 14px 10px;
+  }
+
+  .login-card {
+    padding: 24px 18px;
+  }
+
+  .logo-section {
+    margin-bottom: 18px;
+  }
+
+  .logo-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .register-class-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .register-class-grid .form-group:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9b) Penyesuaian HP kecil (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .greeting-card,
+  .card-info,
+  .stats-card,
+  .dashboard-panel,
+  .teacher-dashboard .greeting-card,
+  .teacher-dashboard .stats-card {
+    padding: 12px;
+  }
+
+  .main-dashboard .stats-grid,
+  .admin-page .stats-grid,
+  .teacher-dashboard .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-card,
+  .student-task-card,
+  .exam-card,
+  .announcement-card,
+  .student-task-page .student-task-card,
+  .exam-page .exam-card {
+    padding: 12px;
+  }
+
+  .profil-card {
+    padding: 14px;
+  }
+
+  .avatar-circle {
+    width: 76px;
+    height: 76px;
+  }
+
+  .login-wrapper {
+    padding: 12px 8px;
+  }
+
+  .login-card {
+    padding: 22px 16px;
+  }
+
+  .role-options {
+    flex-direction: row;
+  }
+
+  .role-btn {
+    flex: 1 1 0;
+    padding: 9px 8px;
+  }
+
+  .tk-page-actions .tk-btn {
+    flex: 1 1 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9c) HP sangat kecil (<= 380px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .tk-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profil-right .form-row {
+    gap: 10px;
+  }
+
+  .profil-password-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .profil-password-row .btn-ubah-password {
+    width: 100%;
   }
 }
