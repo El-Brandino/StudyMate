@@ -16,12 +16,17 @@ class ProgressTugasController extends Controller
 
             // Guru hanya boleh melihat progress
             // dari tugas yang dia buat
-            $progress = ProgressTugas::with('student')
+            $progress = ProgressTugas::with([
+                'student:id,name,profile_photo,class_id',
+                'student.kelas:id,grade,class_number,major_id',
+                'student.kelas.major:id,name',
+            ])
                 ->where('task_id', $taskId)
                 ->whereHas('task', function ($query) use ($user) {
                     $query->where('teacher_id', $user->id)
                         ->where('mode', 'individu');
                 })
+                ->orderByDesc('completed_at')
                 ->get();
 
         } else {

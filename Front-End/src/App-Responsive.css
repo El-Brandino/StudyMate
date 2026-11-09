@@ -7,6 +7,7 @@
    Breakpoint:
    - 1200px : sidebar dipersempit, konten memakai sisa lebar.
    - 1024px : sidebar menjadi navigasi bawah, semua halaman full width.
+   - 769-1024: optimasi tablet (navbar & bottom navigation).
    -  900px : dashboard dua kolom & profil ditumpuk.
    -  768px : HP/tablet portrait, kartu, filter, kalender, modal.
    -  700px : kartu info dashboard admin satu kolom.
@@ -2425,5 +2426,397 @@ button {
 
   .profil-password-row .btn-ubah-password {
     width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10) Optimasi tablet (769px - 1024px): navbar & bottom navigation
+   Mengatur dimensi, area klik, spacing, alignment, dan active state nav.
+   Minimal tinggi 600px agar HP landscape tidak ikut berubah.
+   Mobile (<= 768px) dan desktop (> 1024px) tidak tersentuh.
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) and (max-width: 1024px) and (min-height: 600px) {
+  :root {
+    --sm-header-h: 76px;
+    --sm-bottom-nav-h: calc(94px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* --- Navbar --- */
+  .main-header {
+    min-height: var(--sm-header-h);
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+    gap: 16px;
+  }
+
+  .title-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .nav-contain {
+    flex: 0 0 auto;
+    gap: 12px;
+  }
+
+  .nav-buttons {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .icon-button img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .account-button {
+    min-height: 48px;
+    padding: 4px 10px 4px 6px;
+    gap: 9px;
+  }
+
+  .account-button > img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .account-btn-info {
+    min-width: 0;
+    max-width: 140px;
+  }
+
+  .account-btn-info strong,
+  .account-btn-info small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav-profile {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* --- Bottom navigation --- */
+  aside:not(.deadline-sidebar) {
+    padding: 8px max(10px, env(safe-area-inset-right, 0px))
+      calc(8px + env(safe-area-inset-bottom, 0px))
+      max(10px, env(safe-area-inset-left, 0px));
+  }
+
+  aside .aside-contain .button-list {
+    gap: 8px;
+  }
+
+  aside .button-list a,
+  aside .log-out button {
+    min-height: 72px;
+    padding: 8px 2px;
+    gap: 5px;
+    border-radius: 16px;
+    font-size: 12.5px;
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  aside .button-list a img,
+  aside .log-out button img {
+    width: 26px;
+    height: 26px;
+  }
+
+  aside .nav-label {
+    font-size: 12.5px;
+    line-height: 1.15;
+  }
+
+  /* Hover tidak memunculkan border tambahan pada perangkat sentuh. */
+  aside .button-list a:hover,
+  aside .log-out button:hover {
+    border-color: transparent;
+  }
+
+  /* Active state: mengikuti kelas .active dari NavLink (React Router). */
+  aside .button-list a.active {
+    background-color: #2a5f4b;
+    border-color: transparent;
+    border-radius: 16px;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  aside .button-list a.active .nav-label {
+    font-weight: 600;
+  }
+
+  aside .button-list a.active img {
+    filter: brightness(0) invert(1);
+  }
+
+  aside .log-out {
+    flex: 0 0 80px;
+  }
+
+  aside .log-out button {
+    margin-left: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11) Optimasi dashboard guru untuk tablet
+   Target: 768x1024, 1024x768, dan 1280x800.
+   Hanya mengatur susunan, dimensi, padding, dan gap dashboard guru.
+   Mobile (< 768px), desktop lebar, dan dashboard siswa tidak tersentuh.
+   -------------------------------------------------------------------------- */
+
+/* Kerapatan umum: dipakai tablet portrait/landscape dan large tablet pendek. */
+@media (min-width: 768px) and (max-width: 1024px) and (min-height: 600px),
+  (min-width: 1025px) and (max-width: 1280px) and (min-height: 600px) and (max-height: 800px) {
+  .teacher-dashboard {
+    gap: 12px;
+  }
+
+  .teacher-dashboard .greeting-card {
+    min-height: 0;
+    padding: 14px 18px;
+    gap: 4px;
+  }
+
+  .teacher-dashboard .greeting-card h2 {
+    font-size: 19px;
+  }
+
+  .teacher-dashboard .greeting-card p {
+    font-size: 12.5px;
+  }
+
+  .teacher-dashboard .stats-grid {
+    gap: 10px;
+  }
+
+  .teacher-dashboard .stats-card {
+    min-height: 0;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .teacher-dashboard .icon-box {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .teacher-dashboard .icon-box svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .teacher-dashboard .stats-card strong {
+    font-size: 20px;
+  }
+
+  .teacher-dashboard .stats-card small {
+    font-size: 11.5px;
+  }
+
+  .teacher-dashboard .dashboard-panel {
+    min-height: 0;
+    padding: 14px 16px;
+  }
+
+  .teacher-dashboard .progress-panel h3,
+  .teacher-dashboard .card-info-header h3 {
+    font-size: 14px;
+  }
+
+  .teacher-dashboard .progress-header {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .teacher-dashboard .progress-filter {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .teacher-dashboard .dropdown-class select,
+  .teacher-dashboard .dropdown-mayor select,
+  .teacher-dashboard .dropdown-numberClass select {
+    min-width: 110px;
+    height: 30px;
+    padding: 0 8px;
+    font-size: 11.5px;
+  }
+
+  .teacher-dashboard .progress-content {
+    min-height: 0;
+    margin-top: 10px;
+    gap: 18px;
+  }
+
+  .teacher-dashboard .progress-ring {
+    width: 76px;
+    height: 76px;
+    flex-basis: 76px;
+    border-width: 8px;
+  }
+
+  .teacher-dashboard .progress-ring strong {
+    font-size: 19px;
+  }
+
+  .teacher-dashboard .progress-ring span {
+    margin-top: 2px;
+    font-size: 11px;
+  }
+
+  .teacher-dashboard .progress-copy p {
+    margin-bottom: 8px;
+    font-size: 12.5px;
+  }
+
+  .teacher-dashboard .progress-bar {
+    height: 7px;
+  }
+
+  .teacher-dashboard .progress-note {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .teacher-dashboard .card-info-header {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .teacher-dashboard .card-info-header a {
+    font-size: 12px;
+  }
+
+  .teacher-dashboard .card-info-view {
+    min-height: 0;
+    margin-top: 10px;
+    padding: 8px;
+  }
+
+  .teacher-dashboard .card-info-view:not(.teacher-recent-tasks) {
+    min-height: 72px;
+    padding: 12px;
+  }
+
+  .teacher-dashboard .teacher-recent-tasks {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .teacher-dashboard .teacher-recent-task {
+    align-items: center;
+    gap: 9px;
+    padding: 7px 9px;
+  }
+
+  .teacher-dashboard .teacher-recent-task__icon {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+    border-radius: 8px;
+  }
+
+  .teacher-dashboard .teacher-recent-task__icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .teacher-dashboard .teacher-recent-task__content {
+    gap: 2px;
+  }
+
+  .teacher-dashboard .teacher-recent-task__content strong {
+    font-size: 12px;
+  }
+
+  .teacher-dashboard .teacher-recent-task__content > span {
+    font-size: 10.5px;
+  }
+}
+
+/* Tablet portrait & landscape: dua kolom info, progress full-width. */
+@media (min-width: 768px) and (max-width: 1024px) and (min-height: 600px) {
+  .teacher-dashboard {
+    padding-top: calc(var(--sm-header-h) + 12px);
+    padding-bottom: calc(var(--sm-bottom-nav-h) + 12px);
+  }
+
+  .teacher-dashboard .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .teacher-dashboard .progress-panel {
+    grid-column: 1 / -1;
+  }
+
+  .teacher-dashboard .dashboard-grid > .info-panel:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablet landscape lebar: greeting + statistik sebaris, info tiga kolom. */
+@media (min-width: 901px) and (max-width: 1024px) and (min-height: 600px) {
+  .teacher-dashboard {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: stretch;
+  }
+
+  .teacher-dashboard > .greeting-card {
+    grid-column: 1;
+  }
+
+  .teacher-dashboard > .stats-grid {
+    grid-column: 2;
+  }
+
+  .teacher-dashboard > .dashboard-grid {
+    grid-column: 1 / -1;
+  }
+
+  .teacher-dashboard .dashboard-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .teacher-dashboard .dashboard-grid > .info-panel:last-child {
+    grid-column: auto;
+  }
+}
+
+/* Large tablet 1280x800: layout desktop dipadatkan tanpa mengubah posisi. */
+@media (min-width: 1025px) and (max-width: 1280px) and (min-height: 600px) and (max-height: 800px) {
+  .teacher-dashboard {
+    padding-top: 16px;
+    padding-bottom: 20px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: stretch;
+  }
+
+  .teacher-dashboard > .greeting-card {
+    grid-column: 1;
+  }
+
+  .teacher-dashboard > .stats-grid {
+    grid-column: 2;
+  }
+
+  .teacher-dashboard > .dashboard-grid {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .teacher-dashboard .progress-panel {
+    grid-column: 1 / -1;
   }
 }
